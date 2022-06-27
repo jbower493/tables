@@ -1,0 +1,28 @@
+.filtered {
+    margin-top: 20px;
+}
+
+table {
+    border-collapse: collapse;
+    border: 1px solid;
+}
+
+th {
+    border: 1px solid;
+    padding: 10px;
+    text-transform: capitalize;
+    cursor: pointer;
+}
+
+th.sort {
+    background-color: lightcoral;
+}
+
+th.filter {
+    background-color: lightblue;
+}
+
+td {
+    border: 1px solid;
+    padding: 10px;
+}
