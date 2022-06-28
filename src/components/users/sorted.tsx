@@ -6,7 +6,9 @@ import './style.css'
 export default function SortedUsers() {
     const [sort, setSort] = useState<Headings>(headings[0])
 
-    const { data, error, isLoading } = useGetUsersQuery();
+    const getUsersQuery = useGetUsersQuery();
+    const { data, error, isLoading, isFetching, refetch } = getUsersQuery;
+    console.log(getUsersQuery)
 
     if (error) return <h1>Error</h1>
     if (isLoading) return <h1>Loading</h1>
@@ -15,17 +17,20 @@ export default function SortedUsers() {
 
     return (
         <div className={`users sorted`}>
+            <button onClick={() => refetch()}>Refresh</button>
             <table>
                 <thead>
-                    {headings.map((heading, index) => (
-                        <th
-                            key={index}
-                            className={heading === sort ? 'sort' : ''}
-                            onClick={() => setSort(heading)}
-                        >
-                            {heading}
-                        </th>
-                    ))}
+                    <tr>
+                        {headings.map((heading, index) => (
+                            <th
+                                key={index}
+                                className={heading === sort ? 'sort' : ''}
+                                onClick={() => setSort(heading)}
+                            >
+                                {heading}
+                            </th>
+                        ))}
+                    </tr>
                 </thead>
                 <tbody>
                     {list
